@@ -1,2 +1,2 @@
 ![alt text](screenshots/screenshot2.png)
-<img src="screenshots/screenshot1.png" width="400" height="400" />
+<img src="screenshots/screenshot1.png" width="800" height="800" />
