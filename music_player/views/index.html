@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Player</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+</head>
+
+<body>
+
+  <div class="currently-playing-info padding">
+    <img class="album-cover">
+    <div>
+      <div class="play-type">PLAYLIST</div>
+      <div class="playlist-title">Let's go!</div>
+      <div class="playlist-subtitle">Get pumped stay pumped</div>
+      <div class="currently-playing"></div>
+    </div>
+  </div>
+
+  <div class="playlist grey-text padding">
+    <div></div>
+    <div>SONG</div>
+    <div>ARTIST</div>
+    <div>ALBUM</div>
+    <div>DURATION</div>
+  </div>
+
+  <div id="tracks" class="padding"></div>
+
+  <script src="../bundle.js"></script>
+</body>
+
+</html>
