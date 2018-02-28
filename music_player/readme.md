@@ -1,4 +1,4 @@
-# Music player mockup
+A program to simulate basic music player functionality; playing songs, displaying album cover art
 
 To run:  
 
