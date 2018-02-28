@@ -1,3 +1,3 @@
-# Pascals Triangle implementation
+# Pascals Triangle algorithm
 
-![Alt Text](https://en.wikipedia.org/wiki/Pascal's_triangle#/media/File:PascalTriangleAnimated2.gif)
+![Alt Text](pascalsTriangle.gif)
