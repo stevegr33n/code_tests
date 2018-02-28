@@ -1,4 +1,4 @@
-A program to simulate basic music player functionality; playing songs, displaying album cover art
+A program to simulate basic music player functionality; playing songs, displaying album cover art, real-time duration remaining
 
 To run:  
 
