@@ -25,3 +25,5 @@ function isSemiprime(number) {
   
 	return isSemiprime;
 }
+
+console.log(isSemiprime(26));

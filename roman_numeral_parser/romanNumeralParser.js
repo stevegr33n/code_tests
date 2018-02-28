@@ -2,6 +2,7 @@ function RomanNumeralParser() {
 }
 
 RomanNumeralParser.prototype.parse = function(value) {
+    
     var lookupNumeral = {
         'I': 1,
         'IV': 4,
@@ -16,37 +17,40 @@ RomanNumeralParser.prototype.parse = function(value) {
         'D': 500,
         'CM': 900,
         'M': 1000,
-    }
+    };
+
     try {
-        numerals = value.split('')
+        numerals = value.split('');
     } catch(e) {
         if (e.name == 'TypeError') {
-            return null
+            return null;
         }
     }
-    var total = 0
-    var bothNumerals = ''
-    var validNumeral = ''
-    var firstNumeral = ''
-    var secondNumeral = ''
+    var total = 0;
+    var bothNumerals = '';
+    var validNumeral = '';
+    var firstNumeral = '';
+    var secondNumeral = '';
     while (numerals.length > 0) {
-        bothNumerals = numerals.splice(0, 2)
-        firstNumeral = bothNumerals[0]
-        secondNumeral = bothNumerals[1]
+        bothNumerals = numerals.splice(0, 2);
+        firstNumeral = bothNumerals[0];
+        secondNumeral = bothNumerals[1];
 
         validNumeral = lookupNumeral[bothNumerals.join('')]
         if (validNumeral) {
-            total += validNumeral
+            total += validNumeral;
         } else if (firstNumeral && secondNumeral)  {
-            lookupNumeral[firstNumeral]
-            lookupNumeral[secondNumeral]
-            firstNumeral > secondNumeral ? total += firstNumeral : total = null
-            numerals.unshift(secondNumeral)
+            lookupNumeral[firstNumeral];
+            lookupNumeral[secondNumeral];
+            firstNumeral > secondNumeral ? total += firstNumeral : total = null;
+            numerals.unshift(secondNumeral);
         } else {
-            return null
+            return null;
         }
     }
-    return total
+    return total;
 }
 
 module.exports = RomanNumeralParser;
+
+console.log(RomanNumeralParser.prototype.parse('IX'));

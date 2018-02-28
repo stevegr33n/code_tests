@@ -79,3 +79,6 @@ function morseEnglishTranslator(morseToEnglish, textToTranslate) {
   }
 	return translatedText;
 }
+
+console.log(morseEnglishTranslator(true, '- .... .   .-- .. --.. .- .-. -..'))
+console.log(morseEnglishTranslator(false, 'the wizard'))

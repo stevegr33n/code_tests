@@ -1,10 +1,10 @@
-function pascalsTriangle(numberOfLayers) {
+function pascalsTriangle(depth) {
   
   const totalLayers = [
     [1],
   ];
 
-  for (i = 0; i < numberOfLayers - 1; i++) {
+  for (i = 0; i < depth - 1; i++) {
     element = [];
     for (j = 0; j < totalLayers.length; j++) {
       const currentElement = totalLayers[i][j];
