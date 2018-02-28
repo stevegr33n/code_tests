@@ -2,11 +2,6 @@ function RomanNumeralParser() {
 }
 
 RomanNumeralParser.prototype.parse = function(value) {
-    // Converts the roman numeral string into an integer
-    //
-    //  :param string: Roman numeral as a string
-    //  :returns int: roman numeral integer evaluation of value or None if failed to convert
-    //
     var lookupNumeral = {
         'I': 1,
         'IV': 4,
