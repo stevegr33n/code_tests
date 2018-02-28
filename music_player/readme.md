@@ -2,7 +2,7 @@ A program to simulate basic music player functionality; playing songs, displayin
 
 To run:  
 
-```npm install```  
+```npm install```    
 open views/index.html in a browser  
 
 Written in vanilla javascript  
