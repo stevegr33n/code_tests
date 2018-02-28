@@ -2,7 +2,7 @@ A program to display a filterable list of GitHub issues relating to games made b
 
 To run:  
 
-npm install  
+```npm install```  
 open index.html in a browser  
 
 Written using Vue.js
