@@ -1,5 +1,10 @@
-# music player written in vanilla javascript
+# Music player mockup
 
-# npm install
-# open views/index.html in a browser. 
-# index.html links to a bundle.js file which is also included.
+To run:  
+
+npm install  
+open views/index.html in a browser  
+
+Written in vanilla javascript  
+
+![alt text](screenshot.png)
