@@ -6,6 +6,6 @@ To run:
 
 open views/index.html in a browser  
 
-Written in vanilla javascript  
+Written in vanilla Javascript  
 
 ![alt text](screenshot.png)
