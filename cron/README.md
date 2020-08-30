@@ -38,6 +38,8 @@ Please send us your code as an attachment in an email. Preferably as a zip or ta
 
 Requires Python 3, tested on Ubuntu.
 
+Expects `config` file to be present in current working directory.
+
 Example:
 
 `python3 cron.py 16:10 config.txt`
