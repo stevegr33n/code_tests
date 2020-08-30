@@ -33,3 +33,11 @@ For example: ​`./application.py 16:10 < config` Where `config` is a file conta
 # Submitting your code
 
 Please send us your code as an attachment in an email. Preferably as a zip or tar file. If you’ve uploaded your code to GitHub or some other platform that’s fine, but please still send us the code as an attachment too. We aim to make sure all code tests are checked anonymously to reduce implicit bias in our interview process. To help us with this we’d appreciate it if you try and avoid putting any identifying content inside the file you send us.
+
+# Running the solution
+
+Requires Python 3, tested on Ubuntu.
+
+Example:
+
+`python3 cron.py 16:10 config.txt`
