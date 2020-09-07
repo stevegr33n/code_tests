@@ -1,5 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
 import sys
+import os
 from argparse import ArgumentParser
 
 parser = ArgumentParser(
@@ -8,8 +10,6 @@ parser = ArgumentParser(
       time each cron job will run relative to that timestamp')
 
 parser.add_argument("time", help="Timestamp in the format HH:MM", type=str)
-parser.add_argument(
-    "config", help="Config file containing a list of cron jobs\nExpect format to be * * /bin/run_me_every_minute", type=str)
 
 args = parser.parse_args()
 
@@ -44,21 +44,19 @@ def read_config_line_by_line(**kwargs):
     input_time = kwargs['input_time']
 
     result = ''
-    with open(f'./{args.config}', 'r') as fp:
-        line = fp.readline()
-        i = 0
-        corrupted_line_numbers = []
-        while line:
-            try:
-                result += soonest_time_cron_job_will_run(
-                    input_time=args.time,
-                    cron_time=line.split('-')[0].strip(),
-                    cron_name=line.split('-')[1])
-            except:
-                corrupted_line_numbers.append(str(i + 1))
 
-            line = fp.readline()
-            i += 1
+    i = 0
+    for line in sys.stdin:
+        corrupted_line_numbers = []
+        try:
+            result += soonest_time_cron_job_will_run(
+                input_time=args.time,
+                cron_time=line.split('-')[0].strip(),
+                cron_name=line.split('-')[1])
+        except:
+            corrupted_line_numbers.append(str(i + 1))
+
+        i += 1
 
     if (len(corrupted_line_numbers)):
         result += f'\nCorrupted line numbers: ({", ".join(corrupted_line_numbers)})'
@@ -83,6 +81,10 @@ def parse_input(**kwargs):
             print('Please enter a timestamp in the format HH:MM')
         else:
             print(e)
+        sys.exit()
+
+    if os.isatty(0):
+        print('No config file supplied to STDIN')
         sys.exit()
 
     return read_config_line_by_line(input_time=input_time)

@@ -42,4 +42,4 @@ Expects `config` file to be present in current working directory.
 
 Example:
 
-`python3 cron.py 16:10 config.txt`
+`python3 cron.py 16:10 < config.txt`
