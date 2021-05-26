@@ -87,7 +87,7 @@ const image1 = [
   [1, 1, 1, 1, 1, 1, 1],
   [0, 1, 1, 0, 0, 0, 1],
   [1, 0, 1, 0, 0, 0, 1],
-  [1, 0, 1, 1, 1, 1, 1],
+  [1, 0, 1, 1, 1, 1, 0],
   [1, 0, 1, 0, 0, 1, 1],
   [1, 1, 1, 0, 0, 1, 1],
   [1, 1, 1, 1, 1, 1, 0],
@@ -109,34 +109,70 @@ const image4 = [
   [1, 1, 1, 1, 1],
 ];
 
+const image5 = [
+  [1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 1, 1, 1, 1],
+  [1, 0, 0, 1, 0, 0, 1],
+  [1, 0, 0, 1, 0, 0, 1],
+  [1, 0, 0, 1, 0, 0, 1],
+  [1, 0, 0, 1, 0, 0, 1],
+  [1, 0, 0, 1, 1, 1, 1],
+];
+
 function findRectangles(image) {
-  const key = []
-  let noUpNoLeft = null
-  let noBotNoRight = null
+  const keys = []
+  let noUp = false
+  let noLeft = false
+  let noBot = false
+  let noRight = false
+  const smallestDiff = {val: image.length + 1, tl: null}
   const res = {}
 
   for (let i = 0; i < image.length; i++) {
     for (let j = 0; j < image[i].length; j++) {
 
       if (image[i][j] === 0) {
-        noUpNoLeft = image[i - 1] == null && image[i][j - 1] == null
-        noBotNoRight = image[i + 1] == null && image[i][j + 1] == null
+        noUp = image[i - 1] == null || image[i - 1][j] !== 0
+        noLeft = image[i][j - 1] == null || image[i][j - 1] !== 0
+        noBot = image[i + 1] == null || image[i + 1][j] !== 0
+        noRight = image[i][j + 1] == null || image[i][j + 1] !== 0
 
-        if (noUpNoLeft || image[i - 1][j] !== 0 && image[i][j - 1] !== 0) {
+        // if thing above you and thing to the left of you isnt a zero, you must be tl
+        if (noUp && noLeft) {
           res[`${i}-${j}`] = {tl: [i, j], br: null}
-          key.push(`${i}-${j}`)
-        } // if thing above you and thing to the left of you isnt a zero, you must be tl
+          keys.push(`${i}-${j}`)
+        }
 
-        if (noBotNoRight || image[i + 1][j] !== 0 && image[i][j + 1] !== 0) {
-          res[key.shift()].br = [i, j]
-        } // if thing below you and thing to the right of you isnt a zero, you must be br
+        // if thing below you and thing to the right of you isnt a zero, you must be br
+        if (noBot && noRight) {
+          if (res[`${i}-${j}`] || keys.length === 1) {
+            // if key already exists for a br co-ordinate, we know its a 1x1 rect
+            res[keys.pop()].br = [i, j]
+          } else {
+            // pick the smallest co-ordinate difference between
+            // br and all keys to find this br's key
+            keys.forEach((k, index) => {
+              let [ki, kj] = k.split('-')
+              let diff = (i - Number(ki)) + (j - Number(kj))
+              if (diff < smallestDiff.val) {
+                smallestDiff.val = diff
+                smallestDiff.tl = k
+                smallestDiff.index = index
+              }
+            })
+            res[smallestDiff.tl].br = [i, j]
+            keys.splice(smallestDiff.index, 1)
+          }
+        }
       }
     }
   }
-  for(const [k, v] of Object.entries(res)) {
-    console.log([v.tl, v.br])
+  for (const [k, v] of Object.entries(res)) {
+    console.log(k, v)
   }
 }
+
 console.log("")
 console.log("image1")
 findRectangles(image1)
@@ -149,7 +185,9 @@ findRectangles(image3)
 console.log("")
 console.log("image4")
 findRectangles(image4)
-
+console.log("")
+console.log("image5")
+findRectangles(image5)
 
 function findRectangle(image) {
   const res = []
